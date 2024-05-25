@@ -1,0 +1,19 @@
+# .gitignore
+
+# Ignore Python cache files
+__pycache__
+
+# Ignore environment variables file
+.env
+
+# Ignore database file
+database/modeation_logs.db
+
+# Ignore virtual environment
+venv
+
+# Ignore any compiled files
+*.pyc
+
+# Ignore any logs generated
+logs/
