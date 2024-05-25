@@ -1,0 +1,8 @@
+# discord_moderation_bot/requirements.txt
+
+discord.py==1.7.3
+python-dotenv==0.19.0
+asyncio==3.4.3
+profanity-filter==1.0.6
+discord-roles==2.4.1
+discord-webhook==0.12.1
