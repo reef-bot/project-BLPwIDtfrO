@@ -1,0 +1,38 @@
+# discord_moderation_bot/database/moderation_logs.db
+
+# Complete code for the database file to store moderation logs
+
+# Import necessary packages
+import sqlite3
+
+# Create a connection to the database
+conn = sqlite3.connect('moderation_logs.db')
+c = conn.cursor()
+
+# Create a table to store moderation logs
+c.execute('''CREATE TABLE IF NOT EXISTS moderation_logs (
+                log_id INTEGER PRIMARY KEY,
+                user_id TEXT NOT NULL,
+                action TEXT NOT NULL,
+                reason TEXT,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+             )''')
+
+# Function to insert a new moderation log entry
+def insert_moderation_log(user_id, action, reason):
+    c.execute('''INSERT INTO moderation_logs (user_id, action, reason) 
+                 VALUES (?, ?, ?)''', (user_id, action, reason))
+    conn.commit()
+
+# Function to retrieve all moderation logs
+def get_all_moderation_logs():
+    c.execute('''SELECT * FROM moderation_logs''')
+    return c.fetchall()
+
+# Function to retrieve moderation logs for a specific user
+def get_moderation_logs_for_user(user_id):
+    c.execute('''SELECT * FROM moderation_logs WHERE user_id = ?''', (user_id,))
+    return c.fetchall()
+
+# Close the database connection
+conn.close()
